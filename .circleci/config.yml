@@ -7,10 +7,11 @@ jobs:
 
     steps:
       - checkout
-      - run: make deps
-      - run: make test
+     - run: make deps
+     - run: make lint
+     - run: make test
 
 workflows:
-  basic:
+  basic: Test
     jobs:
-      - build-and-test
+      - build-and-test-fix-bug
