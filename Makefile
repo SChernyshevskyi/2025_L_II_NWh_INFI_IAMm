@@ -13,7 +13,7 @@ run:
 test:
 	PYTHONPATH=. python -m pytest --verbose -s
 
-TAG=$(USERNAME)/hello-world-printer
+TAG=$(USERNAME)/sviatoslav65913
 
 docker_build:
 	docker build -t hello-world-printer .
@@ -25,7 +25,7 @@ docker_run: docker_build
 		-d hello-world-printer
 
 docker_push: docker_build
-	docker login --username $(USERNAME) --password $${DOCKER_PASSWORD}; \
+	docker login -u $(USERNAME) -p $${DOCKER_PASSWORD}; \
 	docker tag hello-world-printer $(TAG); \
 	docker push $(TAG); \
-	docker logout;
+	docker logout
