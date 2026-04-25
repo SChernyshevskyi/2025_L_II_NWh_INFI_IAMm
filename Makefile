@@ -13,7 +13,9 @@ run:
 test:
 	PYTHONPATH=. python -m pytest --verbose -s
 
-TAG=$(USERNAME)/sviatoslav65913
+DOCKER_USER=sviatoslav65913
+IMAGE_NAME=hello-world-printer
+TAG=$(DOCKER_USER)/$(IMAGE_NAME)
 
 docker_build:
 	docker build -t hello-world-printer .
@@ -25,7 +27,5 @@ docker_run: docker_build
 		-d hello-world-printer
 
 docker_push: docker_build
-	docker login -u $(USERNAME) -p $${DOCKER_PASSWORD}; \
-	docker tag hello-world-printer $(TAG); \
-	docker push $(TAG); \
-	docker logout
+	docker tag hello-world-printer $(TAG)
+	docker push $(TAG)
